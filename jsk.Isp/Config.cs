@@ -8,7 +8,7 @@ public static class Config
         new IdentityResource[]
         { 
             new IdentityResources.OpenId(),
-            new IdentityResources.Profile();
+            new IdentityResources.Profile(),
         };
 
     public static IEnumerable<ApiScope> ApiScopes =>
