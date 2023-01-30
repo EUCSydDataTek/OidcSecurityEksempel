@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "jsk.Isp", "jsk.Isp\jsk.Isp.csproj", "{13BE86EF-F46E-49F5-BEEE-537362CDE530}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfidentialWebApp", "ConfidentialWebApp\ConfidentialWebApp.csproj", "{D7FB957C-43DC-44A1-A3C2-FAB119F3D8E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfidentialWebApp", "ConfidentialWebApp\ConfidentialWebApp.csproj", "{D7FB957C-43DC-44A1-A3C2-FAB119F3D8E8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Confidential", "Confidential", "{3E9B4931-75DE-404A-A074-D57B55D75E41}"
 EndProject

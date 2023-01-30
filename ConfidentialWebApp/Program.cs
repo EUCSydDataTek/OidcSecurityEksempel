@@ -1,7 +1,35 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllers();
 builder.Services.AddRazorPages();
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+})
+.AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
+.AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme,options =>
+{
+    options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.Authority = "https://localhost:5001";
+    options.ClientId = "confidentialclient";
+    options.ClientSecret = "secret";
+    options.ResponseType = "code";
+
+    /* Tilføj Scopes */
+    //options.Scope.Add("openid");
+    //options.Scope.Add("profile");
+
+    /* Ændre Callback */
+    //options.CallbackPath = new PathString("signin-oidc");
+
+    options.SaveTokens = true;
+});
 
 var app = builder.Build();
 
@@ -18,8 +46,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
+
 app.UseAuthorization();
 
+app.MapControllers();
 app.MapRazorPages();
 
 app.Run();
