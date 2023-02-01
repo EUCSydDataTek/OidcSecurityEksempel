@@ -1,11 +1,15 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
+
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
 builder.Services.AddAuthentication(options =>
 {
@@ -29,6 +33,12 @@ builder.Services.AddAuthentication(options =>
     //options.CallbackPath = new PathString("signin-oidc");
 
     options.SaveTokens = true;
+    options.GetClaimsFromUserInfoEndpoint = true;
+
+    options.ClaimActions.Remove("aud");
+    options.ClaimActions.DeleteClaim("sid");
+    options.ClaimActions.DeleteClaim("idp");
+
 });
 
 var app = builder.Build();

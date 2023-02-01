@@ -28,6 +28,10 @@ public static class Config
                     {
                         "https://localhost:7276/signin-oidc"
                     },
+                    PostLogoutRedirectUris =
+                    {
+                        "https://localhost:7276/signout-callback-oidc"
+                    },
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
