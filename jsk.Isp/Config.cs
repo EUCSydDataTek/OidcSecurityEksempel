@@ -14,7 +14,15 @@ public static class Config
 
     public static IEnumerable<ApiScope> ApiScopes =>
         new ApiScope[]
-            { };
+            {
+                new ApiScope()
+                {
+                    DisplayName = "Todo api",
+                    Name = "api",
+                    Description = "Access todo Api",
+                    Emphasize= true,
+                }
+            };
 
     public static IEnumerable<Client> Clients =>
         new Client[] 
@@ -43,5 +51,35 @@ public static class Config
                     },
                     RequireConsent = true,
                 },
-            };
+                new Client()
+                {
+                    ClientName= "M2m Client",
+                    ClientId= "m2mclient",
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    AllowedScopes =
+                    {
+                        "api"
+                    },
+                    ClientSecrets =
+                    {
+                        new Secret("m2mSecret".Sha256())
+                    },
+                },
+                new Client()
+                {
+                    ClientName= "Device Client",
+                    ClientId= "deviceclient",
+                    AllowedGrantTypes = GrantTypes.DeviceFlow,
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "api"
+                    },
+                    ClientSecrets =
+                    {
+                         new Secret("DeviceSecret".Sha256())
+                    },
+                },
+        };
 }
