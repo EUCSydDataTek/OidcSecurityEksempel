@@ -81,5 +81,30 @@ public static class Config
                          new Secret("DeviceSecret".Sha256())
                     },
                 },
+                new Client()
+                {
+                    ClientName= "Swagger Client",
+                    ClientId= "SwagClient",
+                    AllowedGrantTypes = GrantTypes.Code,
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "api"
+                    },
+                    RedirectUris =
+                    {
+                        "https://localhost:7216/swagger/oauth2-redirect.html"
+                    },
+                    AllowedCorsOrigins =
+                    {
+                        "https://localhost:7216"
+                    },
+                    ClientSecrets =
+                    {
+                         new Secret("TooSwagSecret".Sha256())
+                    },
+                    RequireConsent= true,
+                },
         };
 }
