@@ -58,12 +58,14 @@ public static class Config
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     AllowedScopes =
                     {
+                        IdentityServerConstants.StandardScopes.OfflineAccess,
                         "api"
                     },
                     ClientSecrets =
                     {
                         new Secret("m2mSecret".Sha256())
                     },
+                    AllowOfflineAccess = true,
                 },
                 new Client()
                 {
@@ -90,6 +92,7 @@ public static class Config
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.OfflineAccess,
                         "api"
                     },
                     RedirectUris =
@@ -105,6 +108,7 @@ public static class Config
                          new Secret("TooSwagSecret".Sha256())
                     },
                     RequireConsent= true,
+                    AllowOfflineAccess = true,
                 },
         };
 }

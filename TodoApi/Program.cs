@@ -28,8 +28,8 @@ builder.Services.AddSwaggerGen(options =>
                                 Scopes =
                                 {
                                     // (SCOPE,COMMENT)
-                                    new("openid","Openid"),
-                                    new("api","Api access")
+                                    new("openid", "Openid"),
+                                    new("api", "Api access")
                                 },
                             }
                         },
