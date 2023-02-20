@@ -1,5 +1,11 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+@{
+    string GetCurrentUrl()
+    {
+        return $"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}";
+    }
+}
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,8 +32,12 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="Logout">Logout</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Profile">Profile</a>
                         </li>
+                        <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="Logout">Logout</a>
+                        </li>
+
                     </ul>
                 </div>
             </div>

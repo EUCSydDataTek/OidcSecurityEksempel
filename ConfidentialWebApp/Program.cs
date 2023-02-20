@@ -1,3 +1,4 @@
+using Auth0.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
@@ -11,35 +12,11 @@ builder.Services.AddRazorPages();
 
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-})
-.AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
-.AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme,options =>
-{
-    options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    options.Authority = "https://localhost:5001";
-    options.ClientId = "confidentialclient";
-    options.ClientSecret = "secret";
-    options.ResponseType = "code";
-
-    /* Tilføj Scopes */
-    //options.Scope.Add("openid");
-    //options.Scope.Add("profile");
-
-    /* Ændre Callback */
-    //options.CallbackPath = new PathString("signin-oidc");
-
-    options.SaveTokens = true;
-    options.GetClaimsFromUserInfoEndpoint = true;
-
-    options.ClaimActions.Remove("aud");
-    options.ClaimActions.DeleteClaim("sid");
-    options.ClaimActions.DeleteClaim("idp");
-
-});
+builder.Services
+        .AddAuth0WebAppAuthentication(options => {
+            options.Domain = builder.Configuration.GetValue<string>("Auth0:Domain");
+            options.ClientId = builder.Configuration.GetValue<string>("Auth0:ClientId");
+        });
 
 var app = builder.Build();
 

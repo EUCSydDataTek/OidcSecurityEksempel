@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Confidential", "Confidentia
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{B1EF3203-C424-4486-9878-ECCD9351453B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApi", "TodoApi\TodoApi.csproj", "{8E71A8CC-2440-458D-8666-8B42F1581584}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApi", "TodoApi\TodoApi.csproj", "{8E71A8CC-2440-458D-8666-8B42F1581584}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
